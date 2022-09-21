@@ -9,7 +9,7 @@ class UserLocationController extends Controller
 {
     public function index()
     {
-        $ip = geoip()->getClientIP($_SERVER['REMOTE_ADDR']);
+        $ip = '122.173.32.207';
         $userDetails = Location::get($ip);
         dd($userDetails);
         return view('location', compact('userDetails'));
