@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserLocationController;
+use Stevebauman\Location\Facades\Location;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,9 @@ Route::get('/', function () {
 
 Route::get('/geoip', function () {
     $Ip = geoip()->getClientIP($_SERVER['REMOTE_ADDR']);
-    $geoipInfo = geoip()->getLocation($Ip);
+    $userDetails = Location::get($Ip);
+    dd($userDetails);
+//     $geoipInfo = geoip()->getLocation($Ip);
     // ->getClientIP()
     // ->getLocation($_SERVER['REMOTE_ADDR']) - THIS FOR DYNAMICALLY CHANGING IP
     // ->getLocation(ip: '172.16.164.56');
