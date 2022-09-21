@@ -22,12 +22,12 @@ use App\Http\Controllers\UserLocationController;
 Route::get('/', function () {
 
     return view('welcome', [
-        'geoipInfo' => geoip()->getLocation('115.247.148.6')
+        'geoipInfo' => geoip()->getLocation($_SERVER['REMOTE_ADDR'])
     ]);
 });
 
 Route::get('/geoip', function () {
-    $Ip = geoip()->getClientIP();
+    $Ip = geoip()->getClientIP($_SERVER['REMOTE_ADDR']);
     $geoipInfo = geoip()->getLocation($Ip);
     // ->getClientIP()
     // ->getLocation($_SERVER['REMOTE_ADDR']) - THIS FOR DYNAMICALLY CHANGING IP
